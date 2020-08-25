@@ -1,0 +1,352 @@
+#include<vector>
+using namespace std;
+class Solution {
+public:
+    int res=0;
+    bool check(vector<vector<int>>& grid)
+    {
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[i].size();j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    return true;
+                    //还有新鲜橘子
+                }
+            }
+        }
+        return false;//没有了
+    }
+    int tag=0;
+    void reset(vector<vector<int>>& grid,int x,int y)
+    {
+        if(x==0||x==grid.size()-1)
+            {
+                //edge 
+                if(x==0)
+                {
+                    if(y==0)
+                    {
+                        //
+                        if(grid[x][y+1]==2)
+                        {
+                           x=x;
+                           y=y+1;
+                           return;
+                        }
+                        if(grid[x+1][y]==2)
+                        {
+                            x=x+1;
+                            y=y;
+                            return;
+                        }
+                    }
+                    else if(y==grid[x].size()-1)
+                    {
+                        if(grid[x][y-1]==2)
+                        {
+                            x=x;
+                            y=y-1;
+                        }
+                        if(grid[x+1][y]==2)
+                        {
+                            x=x+1;
+                            y=y;
+                        }
+                    }
+                    else
+                    {
+                        if(grid[x][y-1]==2)
+                        {
+                            x=x;
+                            y=y-1;
+                            return;
+                        }
+                        if(grid[x][y+1]==2)
+                         {
+                             x=x;
+                             y=y+1;
+                             return;
+                         }
+                        if(grid[x+1][y]==2)
+                        {
+                            x=x+1;
+                            y=y;
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    if(y==0)
+                    {
+                        //
+                        if(grid[x][y+1]==2)
+                        {
+                            x=x;
+                            y=y+1;
+                            return;
+                        }
+                        if(grid[x-1][y]==2)
+                        {
+                            x=x-1;
+                            y=y;
+                            return;
+                        }
+                    }
+                    else if(y==grid[x].size()-1)
+                    {
+                        if(grid[x][y-1]==2)
+                        {
+                            x=x;
+                            y=y-1;
+                            return;
+                        }
+                        if(grid[x-1][y]==2)
+                        {
+                            x=x-1;
+                            y=y;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if(grid[x][y-1]==2)
+                          {
+                              x=x;
+                              y=y-1;
+                              return;
+                          }
+                        if(grid[x][y+1]==2)
+                        {
+                            x=x;
+                            y=y+1;
+                            return;
+                        }
+                        if(grid[x-1][y]==2)
+                          {
+                              x=x-1;
+                              y=y;
+                              return;
+                          }
+                    }
+                }
+                
+            }
+            else if(y==0||y==grid[x].size()-1)
+            {
+                if(y==0)
+                {
+                    if(grid[x][y+1]==2)
+                       {
+                           x=x;
+                           y=y+1;
+                           return;
+                       }
+                    if(grid[x+1][y]==2)
+                      {
+                          x=x+1;
+                          y=y;
+                          return;
+                      }
+                    if(grid[x-1][y]==2)
+                       {
+                           x=x-1;
+                           y=y;
+                           return;
+                       }
+                }
+                else
+                {
+                    if(grid[x][y-1]==2)
+                       {
+                           x=x;
+                           y=y-1;
+                           return;
+                       }
+                    if(grid[x+1][y]==2)
+                        {
+                            x=x+1;
+                            y=y;
+                            return;
+                        }
+                    if(grid[x-1][y]==2)
+                        {
+                            x=x-1;
+                            y=y;
+                            return;
+                        }
+                } 
+            }
+            else
+            {
+                if(grid[x+1][y]==2)
+                    {
+                        x=x+1;
+                        y=y;
+                        return;
+                    }
+                if(grid[x-1][y]==2)
+                {
+                    x=x-1;
+                    y=y;
+                    return;
+                }
+                if(grid[x][y+1]==2)
+                   {
+                       x=x;
+                       y=y+1;
+                       return;
+                   }
+                if(grid[x][y-1]==2)
+                {
+                    x=x;
+                    y=y-1;
+                    return;
+                }
+            }  
+    }
+    void rot(vector<vector<int>>& grid,int x,int y)
+    {
+        if(!check(grid))
+        {
+            tag=1;
+            return;
+            // have done;
+        }
+        else
+        {   //
+            if(grid[x][y]==1||grid[x][y]==0)
+            {
+                return;
+            }
+            if(x==0||x==grid.size()-1)
+            {
+                //edge 
+                if(x==0)
+                {
+                    if(y==0)
+                    {
+                        //
+                        if(grid[x][y+1]==1)
+                        {
+                            grid[x][y+1]=2;
+                        }
+                        if(grid[x+1][y]==1)
+                            grid[x+1][y]=2;
+                    }
+                    else if(y==grid[x].size()-1)
+                    {
+                        if(grid[x][y-1]==1)
+                            grid[x][y-1]=2;
+                        if(grid[x+1][y]==1)
+                            grid[x+1][y]=2;
+                    }
+                    else
+                    {
+                        if(grid[x][y-1]==1)
+                            grid[x][y-1]=2;
+                        if(grid[x][y+1])
+                            grid[x][y+1]=2;
+                        if(grid[x+1][y]==2)
+                            grid[x+1][y]=2;
+                    }
+                }
+                else
+                {
+                    if(y==0)
+                    {
+                        //
+                        if(grid[x][y+1]==1)
+                        {
+                            grid[x][y+1]=2;
+                        }
+                        if(grid[x-1][y]==1)
+                            grid[x-1][y]=2;
+                    }
+                    else if(y==grid[x].size()-1)
+                    {
+                        if(grid[x][y-1]==1)
+                            grid[x][y-1]=2;
+                        if(grid[x-1][y]==1)
+                            grid[x-1][y]=2;
+                    }
+                    else
+                    {
+                        if(grid[x][y-1]==1)
+                            grid[x][y-1]=2;
+                        if(grid[x][y+1])
+                            grid[x][y+1]=2;
+                        if(grid[x-1][y]==2)
+                            grid[x-1][y]=2;
+                    }
+                }
+                
+            }
+            else if(y==0||y==grid[x].size()-1)
+            {
+                if(y==0)
+                {
+                    if(grid[x][y+1]==1)
+                        grid[x][y+1]=2;
+                    if(grid[x+1][y]==1)
+                        grid[x+1][y]=2;
+                    if(grid[x-1][y]==1)
+                        grid[x-1][y]=2;
+                }
+                else
+                {
+                    if(grid[x][y-1]==1)
+                        grid[x][y-1]=2;
+                    if(grid[x+1][y]==1)
+                        grid[x+1][y]=2;
+                    if(grid[x-1][y]==1)
+                        grid[x-1][y]=2;
+                } 
+            }
+            else
+            {
+                if(grid[x+1][y]==1)
+                    grid[x+1][y]=2;
+                if(grid[x-1][y]==1)
+                    grid[x-1][y]=2;
+                if(grid[x][y+1]==1)
+                    grid[x][y+1]=2;
+                if(grid[x][y-1]==1)
+                    grid[x][y-1]=2;
+            }  
+
+        }
+        
+        
+    }
+    int x,y;
+    void find(vector<vector<int>>& grid)
+    {
+        for(int i=0;i<grid.size();i++ )
+        {
+            for(int j=0;j<grid[i].size();j++)
+            {
+                if(grid[i][j]==2)
+                {
+                    x=i;
+                    y=j;
+                    return;
+                }
+            }
+            
+        }
+    }
+    int orangesRotting(vector<vector<int>>& grid) 
+    {
+        find(grid);
+        while (tag==0)
+        {
+            res++;
+           rot(grid,x,y);
+        }
+        return res;
+        
+    }
+};
