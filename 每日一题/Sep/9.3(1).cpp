@@ -18,7 +18,8 @@ public:
         if (row == n) {
             vector<string> board = generateBoard(queens, n);
             solutions.push_back(board);
-        } else {
+        }
+         else {
             for (int i = 0; i < n; i++) {
                 if (columns.find(i) != columns.end()) {
                     continue;
