@@ -15,20 +15,20 @@ public:
     vector<string> res;
     void dfs(TreeNode* root,string temp)
     {
-        if(root->left==NULL&&root->right==NULL)
+        if(root->left==nullptr&&root->right==nullptr)
         {
             temp+="->";
             temp.push_back(root->val);
             res.push_back(temp);
             return;
         }
-        else if(root->left&&root->right==NULL)
+        else if(root->left&&root->right==nullptr)
         {
             temp+="->";
             temp.push_back(root->val);
             dfs(root->left,temp);
         }
-        else if(root->right&&root->left!=NULL)
+        else if(root->right&&root->left!=nullptr)
         {
             temp+="->";
             temp.push_back(root->val);
