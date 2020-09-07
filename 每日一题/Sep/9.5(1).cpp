@@ -9,7 +9,6 @@ public:
         for (int i = 1; i < n; ++i) {
             factorial[i] = factorial[i - 1] * i;
         }
-
         --k;
         string ans;
         vector<int> valid(n + 1, 1);
