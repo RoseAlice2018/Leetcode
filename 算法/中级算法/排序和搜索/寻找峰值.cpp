@@ -6,20 +6,23 @@ public:
     int findPeak(vector<int>& nums,int left,int right)
     {
         int mid=(right-left)/2+left;
-        if(mid==left)
-            return nums[left];
+        if(right==left)
+        {
+            return left;
+        } 
         else 
         {
             if(nums[mid]>nums[mid+1])
             {
-                findPeak(nums,left,mid);
+                return findPeak(nums,left,mid);
             }
             else
             {
-                findPeak(nums,mid,right);
+                return  findPeak(nums,mid+1,right);
             }
             
         }
+        return 0;
     }
     int findPeakElement(vector<int>& nums) 
     {
