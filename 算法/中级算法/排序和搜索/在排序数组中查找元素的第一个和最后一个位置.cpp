@@ -17,13 +17,13 @@ public:
             }
             if(mid>r||r==-1)
             r=mid;
-            if(left<mid)
+            if(left>0&&nums[mid-1]==nums[mid])
             {
                 search(nums,target,left,mid-1);
             }
-            if(right>mid)
+            if(right<nums.size()-1&&nums[mid+1]==nums[mid])
             {
-                search(nums,target,mid+1,right);
+                search(nums,target,mid,right);
             }
         }
         else
