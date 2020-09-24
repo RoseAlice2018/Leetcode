@@ -25,7 +25,9 @@ public:
                 max=dic[root->val];
         }
         else{
-            dic[root->val]=1;
+            dic.insert(pair<int,int>(root->val,1));
+            if(max==0)
+                max=1;
         }
         dfs(root->left,dic);
         dfs(root->right,dic);
@@ -33,9 +35,11 @@ public:
     vector<int> findMode(TreeNode* root) {
         unordered_map<int,int> dic;
         vector<int> res;
+        dfs(root,dic);
         for(auto iter = dic.begin();iter!=dic.end(); ++iter){
             if(iter->second==max)
                 res.push_back(iter->first);
+           // cout<<iter->first<<" "<<iter->second<<endl;
         }
         return res;
     }
