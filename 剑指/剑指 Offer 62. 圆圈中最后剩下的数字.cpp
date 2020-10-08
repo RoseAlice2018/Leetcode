@@ -10,7 +10,12 @@ public:
         vector<int>::iterator it=temp.begin();
         while(temp.size()>1)
         {
-            int k=m%temp.size();
+            int k;
+            if(m<=temp.size())
+                k=m;
+            else{
+                k=m%temp.size();
+            }
             it=temp.begin()+k-1;
             temp.erase(it);
         }
