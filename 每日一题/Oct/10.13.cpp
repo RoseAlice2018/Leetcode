@@ -13,13 +13,16 @@ class Solution {
 public:
     ListNode* swapPairs(ListNode* head) 
     {
+        if(head==NULL)
+            return head;
         ListNode* res;
         ListNode* prepre;
         ListNode* pre=head;
         ListNode* now=head->next;
-        ListNode* nextt=now->next;
+        
         if(now==NULL)
             return head;
+        ListNode* nextt=now->next;
         if(nextt==NULL)
         {
             //ListNode* temp=pre;
@@ -46,7 +49,7 @@ public:
             nextt->next=now;
             temp=now;
             now=nextt;
-            nextt=now;
+            nextt=temp;
             if(nextt->next==NULL)
             {
                 return res;
