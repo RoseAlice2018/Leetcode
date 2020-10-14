@@ -38,6 +38,6 @@ public:
         root->left=bTree(preorder,inorder,preleft+1,preleft+leftsize,inleft,mid-1);
         preright=preleft+leftsize+1;
         root->right=bTree(preorder,inorder,preright,preright+rightsize-1,mid+1,mid+rightsize);
-
+        return root;
     }
 };
