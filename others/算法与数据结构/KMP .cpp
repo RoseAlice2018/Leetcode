@@ -4,11 +4,11 @@ using namespace std;
 //next 数组生成
 vector<int> next(string t)
 {
-    vector<int> next(t.size()+1);
+    vector<int> next(t.size());
     next[0]=-1;
     next[1]= 0;
     int j=2;
-    while(j<=t.size())
+    while(j<t.size())
     {
         if(next[j-1]!=0&&t[next[j-1]]==t[j-1])
         {
@@ -68,8 +68,8 @@ int main()
     cin>>s>>t;
     vector<int> next;
     int res=KMP(s,t,next);
-    for(int i=1;i<=t.size();i++)
-        cout<<next[i]-1<<" ";
+    for(int i=0;i<t.size();i++)
+        cout<<next[i]<<" ";
     cout<<endl;
     cout<<res;
 }
