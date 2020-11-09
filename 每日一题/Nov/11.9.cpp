@@ -24,7 +24,7 @@ public:
         }
         return res;
     }
-   static bool cmp(vector<double> a,vector<double> b)
+   static bool cmp(vector<double>& a,vector<double>& b)
     {
         if(a[0]<b[0])
             return true;
