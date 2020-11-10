@@ -3,21 +3,23 @@
 using namespace std;
 class Solution {
 public:
-    void nextPermutation(vector<int>& nums) 
-    {
-        int diff=-1;
-        for(int i=0;i<nums.size()-1;i++)
+    void nextPermutation(vector<int>& nums)
+     {
+        int i = nums.size() - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1])
+         {
+            i--;
+        }
+        if (i >= 0) 
         {
-            if(nums[i]<nums[i+1])
-            {
-                diff=i;
+            int j = nums.size() - 1;
+            while (j >= 0 && nums[i] >= nums[j])
+             {
+                j--;
             }
+            swap(nums[i], nums[j]);
         }
-        if(diff==-1)
-        {
-            reverse(nums.rbegin(),nums.rend());
-            return;
-        }
-        
+        reverse(nums.begin() + i + 1, nums.end());
     }
 };
+
