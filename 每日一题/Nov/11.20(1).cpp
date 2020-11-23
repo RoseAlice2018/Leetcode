@@ -10,20 +10,27 @@ using namespace std;
  
 class Solution {
 public:
-    ListNode* insertionSortList(ListNode* head) {
-        if (head == nullptr) {
+    ListNode* insertionSortList(ListNode* head) 
+    {
+        if (head == nullptr)
+         {
             return head;
         }
         ListNode* dummyHead = new ListNode(0);
         dummyHead->next = head;
         ListNode* lastSorted = head;
         ListNode* curr = head->next;
-        while (curr != nullptr) {
-            if (lastSorted->val <= curr->val) {
+        while (curr != nullptr)
+         {
+            if (lastSorted->val <= curr->val) 
+            {
                 lastSorted = lastSorted->next;
-            } else {
+            } 
+            else 
+            {
                 ListNode *prev = dummyHead;
-                while (prev->next->val <= curr->val) {
+                while (prev->next->val <= curr->val) 
+                {
                     prev = prev->next;
                 }
                 lastSorted->next = curr->next;
