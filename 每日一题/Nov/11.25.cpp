@@ -6,8 +6,7 @@ public:
     string res;   
     string sortString(string s)
     {
-         while(findmin(s,res));
-            while(findmax(s,res));
+         while(findmin(s,res)||findmax(s,res));
         return res;
     }
     
