@@ -89,3 +89,20 @@ void preorder(TreeNode<int>* root)
          T.pop();
      }
  }
+
+ void level(TreeNode<int>* root)
+ {
+     if(root == NULL)
+        return ;
+    queue<TreeNode<int>*> temp;
+    temp.push(root);
+    while(!temp.empty())
+    {
+        TreeNode<int>* t=temp.front();
+        temp.pop();
+        if(t->leftchild)
+            temp.push(t->leftchild);
+        if(t->rightchild)
+            temp.push(t->rightchild);
+    }
+ }
