@@ -32,6 +32,7 @@ public:
             }
         }
         
-        return reverse(ret.begin(),ret.end());
+       reverse(ret.begin(),ret.end());
+       return ret;
     }
 };
