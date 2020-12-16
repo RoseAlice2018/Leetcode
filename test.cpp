@@ -1,108 +1,53 @@
 #include<iostream>
 #include<stack>
+#include<stdio.h>
 #include<queue>
+#include<map>
+#include<math.h>
+#include<time.h>
+#include<stdlib.h>
 using namespace std;
+long get_a_target_long()
+{
+    return rand();
+}
+void test_multimap(long& value)
+{
+	cout<<"\n test_multimap().........\n";
+	map<long,string> c;
+	char buf[10];
+	clock_t timeStart = clock();
+	for(long i=0;i< value ;++i)
+	{
+		try{
+			snprintf(buf,10,"%d",rand());
+			//multimap can't use [] as insertion
+			c.insert(pair<long,string>(i,buf));
+		}
+		catch(exception& p)
+		{
+			cout<<"i="<<i<<" "<<p.what()<<endl;
+			abort();
+		}
+	}
+	cout<<"milli-seconds:"<<(clock()-timeStart)<<endl;
+	cout<<"multimap.size()="<<c.size()<<endl;
+	cout<<"multimap.max_size()="<<c.max_size()<<endl;
+	
+	long target = get_a_target_long();
+		timeStart = clock();
+	std::map<long,string>::iterator pItem = c.find(target);
+		cout<<"c.find(),milli-seconds: "<<(clock()-timeStart)<<endl;
+	if(pItem != c.end())
+		cout<<"found, value = "<<(*pItem).second << endl;
+	else
+		cout<<"not found!"<<endl;
+}
+
 int main()
 {
-    bool a=false;
-    cout<<a<<endl;
-    a=5;
-   // cout<<a;
-   cout<<10;
+    long value=1000000;
+    test_multimap(value);
     return 0;
 }
 
-template <class T>
-struct TreeNode
-{
-	TreeNode* leftchild;
-	TreeNode* rightchild;
-	T data;
-	TreeNode(T x)leftchild(NULL),rightchild(NULL),data(x){}
-	~TreeNode();
-};
-
-void preorder(TreeNode<int>* root)
-{
-	if(root == NULL)
-		return;
-	stack<TreeNode<int>*> T_pre;
-	T_pre.push(root);
-    while(!T_pre.empty())
-    {
-        TreeNode<int>* temp=T_pre.top();
-        T_pre.pop();
-        cout<<temp->data;
-        if(temp->rightchild)
-            T_pre.push(temp->rightchild);
-        if(temp->leftchild)
-            T_pre.push(temp->leftchild);
-    }
-    return;
-}
- void inorder(TreeNode<int>* root)
- {
-     	if(root == NULL)
-		    return;
-	    stack<TreeNode<int>*> T_pre;
-	    T_pre.push(root);
-        do
-        {
-            while(root!=NULL)
-            {
-                T_pre.push(root);
-                root = root->leftchild;
-            }
-            if(!T_pre.empty())
-            {
-                TreeNode<int>* temp= T_pre.top();
-                T_pre.pop();
-                cout<<temp->data;
-                root = temp->rightchild;
-            }
-        } while (!T_pre.empty()||root!=NULL);
-        return ;
- }
-
- void postorder(TreeNode<int>* root)
- {
-     if(root == NULL)
-     {
-         return ;
-     }
-     stack<TreeNode<int>*> T_post;
-     stack<TreeNode<int>*> T;
-     T_post.push(root);
-     while(!T_post.empty())
-     {
-         TreeNode<int>* curr = T_post.top();
-         T.push(curr);
-         T_post.pop();
-         if(curr->leftchild)
-            T_post.push(curr->leftchild);
-        if(curr->rightchild)
-            T_post.push(curr->rightchild);
-     }
-     while(!T.empty())
-     {
-         cout<<T.top()->data<<endl;
-         T.pop();
-     }
- }
-
- void level(TreeNode<int>* root)
- {
-     if(root == NULL)
-        return ;
-    queue<TreeNode<int>*> temp;
-    temp.push(root);
-    while(!temp.empty())
-    {
-        TreeNode<int>* t=temp.front();
-        temp.pop();
-        if(t->leftchild)
-            temp.push(t->leftchild);
-        if(t->rightchild)
-            temp.push(t->rightchild);
-    }
- }
