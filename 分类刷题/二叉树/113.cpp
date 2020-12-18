@@ -15,32 +15,32 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> binaryTreePaths(TreeNode* root) 
-    {
-        vector<string> res;
+    vector<vector<int>> pathSum(TreeNode* root, int sum)
+     {
+        vector<vector<int>> res;
         if(root==NULL)
             return res;
-        string path=to_string(root->val);
-        preorder(root->left,path,res);
-        preorder(root->right,path,res);
-        if(!root->right&&!root->left)
-            res.push_back(path);
+        vector<int> path;
+        preorder(root,sum,0,path,res);
         return res;
     }
-    void preorder(TreeNode* root,string path,vector<string>& res)
+    void preorder(TreeNode* root,int target,int sum,vector<int> path,vector<vector<int>>& res)
     {
         if(root==NULL)
             return;
-        string add="->"+to_string(root->val);
-        path.append(add);
         if(root->left==NULL&&root->right==NULL)
         {
-            res.push_back(path);
+            sum+=root->val;
+            if(sum==target)
+            {
+                path.push_back(root->val);
+                res.push_back(path);
+                return;
+            }
             return;
         }
-        preorder(root->left,path,res);
-        preorder(root->right,path,res);
-        return;
+        path.push_back(root->val);
+        preorder(root->left,target,sum+root->val,path,res);
+        preorder(root->right,target,sum+root->val,path,res);
     }
 };
-
