@@ -48,6 +48,8 @@ int main()
 {
     long value=1000000;
     test_multimap(value);
+	//int m=1;
+	int*p = new int[m]; 
     return 0;
 }
 

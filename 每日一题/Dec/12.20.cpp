@@ -10,7 +10,6 @@ public:
         for (char ch : s) {
             num[ch - 'a']++;
         }
-
         string stk;
         for (char ch : s) {
             if (!vis[ch - 'a']) {
