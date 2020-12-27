@@ -18,7 +18,8 @@ public:
             return t2;
         if(t2==NULL)
             return t1;
-        
+        preorder(t1,t2);
+        return t1;
     }
     void preorder(TreeNode* t1,TreeNode* t2)
     {
@@ -38,9 +39,9 @@ public:
         }
         else
         {
-            
+            if(t2->right)
+                t1->right=t2->right;
         }
-        
-        
+        return;
     }
 };
