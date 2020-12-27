@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<vector>
 #include<map>
@@ -14,28 +13,23 @@ using namespace std;
   };
 
 
-
 class Solution {
 public:
-    TreeNode* insertIntoBST(TreeNode* root, int val) {
+    TreeNode* trimBST(TreeNode* root, int low, int high) {
         if(root==NULL)
-        {
-            root=new TreeNode(val);
             return root;
-        }
-        if(val>root->val)
+        if(root->val<low)
         {
-            if(root->right)
-                insertIntoBST(root->right,val);
-            else 
-                root->right=new TreeNode(val);
-        }
-        else 
+            return trimBST(root->right,low,high);
+        }  
+        else if(root->val>high)
         {
-            if(root->left)
-                insertIntoBST(root->left,val);
-            else 
-                root->left=new TreeNode(val);
+            return trimBST(root->left,low,high);
+        }
+        else
+        {
+            root->left=trimBST(root->left,low,high);
+            root->right=trimBST(root->right,low,high);
         }
         return root;
     }
