@@ -11,7 +11,7 @@ public:
       {
           int p=heap.top();
           heap.pop();
-          int q=heap.top();
+          int q=heap.top(); 
           heap.pop();
           if(p==q)
             ;
