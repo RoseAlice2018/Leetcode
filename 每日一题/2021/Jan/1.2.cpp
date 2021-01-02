@@ -18,9 +18,8 @@ public:
                     //clear the stack
                     while(!maxvalue.empty())
                         maxvalue.pop();
-                    maxvalue.push(nums[i]);
                 }
-                maxvalue.push(nums[i]);
+                maxvalue.push(max);
             }
             else if(nums[i]==max)
             {
