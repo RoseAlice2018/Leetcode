@@ -58,7 +58,7 @@ public:
             }   
             else if(nums[i+k-1]==max)
             {
-                maxvalue.push(nums[i]);
+                maxvalue.push(max);
             }
             if(maxvalue.empty()){
                 //find the max
