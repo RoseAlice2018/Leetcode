@@ -89,7 +89,7 @@ public:
             {
                 LinkedNode* t=tmp->next;
                 tmp->next=t->next;
-                delete t;
+               // delete t;
                 return;
             }
             index--;
